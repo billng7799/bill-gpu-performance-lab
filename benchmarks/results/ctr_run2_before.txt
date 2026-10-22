@@ -1,0 +1,6 @@
+    Clocks Event Reasons Counters
+        SW Power Capping                               : 181748 us
+        Sync Boost                                     : 0 us
+        SW Thermal Slowdown                            : 0 us
+        HW Thermal Slowdown                            : 0 us
+        HW Power Braking                               : 0 us

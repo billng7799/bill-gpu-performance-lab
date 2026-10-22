@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-10-21T20:58:58",
+  "device": "NVIDIA GeForce RTX 5090 Laptop GPU",
+  "torch": "2.11.0+cu128",
+  "cuda": "12.8",
+  "n_elems": 67108864,
+  "iters": 50,
+  "peak_gbps": 896.0,
+  "results": [
+    {
+      "stride": 1,
+      "stride_bytes": 4,
+      "median_ms": 0.6541599929332733,
+      "min_ms": 0.6488000154495239,
+      "effective_gbps": 820.7027604862451,
+      "effective_pct_peak": 91.59629023283985,
+      "modeled_bus_gbps": 820.7027604862451,
+      "modeled_bus_pct_peak": 91.59629023283985,
+      "slowdown_vs_contig": 1.0
+    },
+    {
+      "stride": 2,
+      "stride_bytes": 8,
+      "median_ms": 1.0168960094451904,
+      "min_ms": 1.007200002670288,
+      "effective_gbps": 527.9506527839676,
+      "effective_pct_peak": 58.9230639267821,
+      "modeled_bus_gbps": 791.9259791759514,
+      "modeled_bus_pct_peak": 88.38459589017314,
+      "slowdown_vs_contig": 1.554506573973437
+    },
+    {
+      "stride": 4,
+      "stride_bytes": 16,
+      "median_ms": 1.7302719950675964,
+      "min_ms": 1.7163840532302856,
+      "effective_gbps": 310.28122372114456,
+      "effective_pct_peak": 34.629600861734886,
+      "modeled_bus_gbps": 775.7030593028613,
+      "modeled_bus_pct_peak": 86.57400215433721,
+      "slowdown_vs_contig": 2.6450287601799127
+    },
+    {
+      "stride": 8,
+      "stride_bytes": 32,
+      "median_ms": 3.063055992126465,
+      "min_ms": 3.0072638988494873,
+      "effective_gbps": 175.27296705643573,
+      "effective_pct_peak": 19.561715073262917,
+      "modeled_bus_gbps": 788.7283517539609,
+      "modeled_bus_pct_peak": 88.02771782968314,
+      "slowdown_vs_contig": 4.682426356267415
+    },
+    {
+      "stride": 16,
+      "stride_bytes": 64,
+      "median_ms": 3.1520479917526245,
+      "min_ms": 3.092384099960327,
+      "effective_gbps": 170.32447266181538,
+      "effective_pct_peak": 19.009427752434753,
+      "modeled_bus_gbps": 766.4601269781692,
+      "modeled_bus_pct_peak": 85.5424248859564,
+      "slowdown_vs_contig": 4.818466469676242
+    },
+    {
+      "stride": 32,
+      "stride_bytes": 128,
+      "median_ms": 3.2931679487228394,
+      "min_ms": 3.254431962966919,
+      "effective_gbps": 163.02567022377647,
+      "effective_pct_peak": 18.19482926604648,
+      "modeled_bus_gbps": 733.615516006994,
+      "modeled_bus_pct_peak": 81.87673169720915,
+      "slowdown_vs_contig": 5.034193445484451
+    }
+  ]
+}
