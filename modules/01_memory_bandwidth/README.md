@@ -39,3 +39,9 @@ Raw data: benchmarks/results/run{1,2,3}.json and .png.
 - Bus GB/s is a model, not a measurement. ncu dram__bytes_read.sum will test it.
 - SW power cap accrued ~40 ms (run 2) and ~260 ms (run 3); no thermal or power-brake events.
   Run 1's accrual is unknown. Mid-stride numbers vary ~5-7% between runs.
+
+## Evidence
+![Strided-read bandwidth, run 3](../../benchmarks/results/run3.png)
+
+Effective bandwidth collapses ~5x while modeled bus traffic stays near 735-830 GB/s:
+the slowdown is read amplification (32 B sectors fetched to use 4 B), not slower DRAM.
