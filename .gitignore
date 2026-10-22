@@ -1,0 +1,5 @@
+venv-gpu-lab/
+__pycache__/
+*.nsys-rep
+*.ncu-rep
+*.sqlite

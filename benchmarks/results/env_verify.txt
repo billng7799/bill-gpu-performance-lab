@@ -1,0 +1,28 @@
+torch 2.11.0+cu128 | CUDA runtime 12.8 | triton 3.6.0
+device     : NVIDIA GeForce RTX 5090 Laptop GPU
+capability : sm_120   (RTX 5090 should be sm_120)
+VRAM       : 23.9 GiB
+SMs        : 82
+arch list  : ['sm_75', 'sm_80', 'sm_86', 'sm_90', 'sm_100', 'sm_120']
+matmul OK  : torch.Size([4096, 4096])
+triton JIT OK
+Wed Oct 21 20:40:47 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 615.65.06              KMD Version: 616.56        CUDA UMD Version: 13.4     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 5090 ...    On  |   00000000:01:00.0 Off |                  N/A |
+| N/A   35C    P0             25W /  145W |       0MiB /  24463MiB |      2%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
