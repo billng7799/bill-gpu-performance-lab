@@ -45,3 +45,19 @@ Raw data: benchmarks/results/run{1,2,3}.json and .png.
 
 Effective bandwidth collapses ~5x while modeled bus traffic stays near 735-830 GB/s:
 the slowdown is read amplification (32 B sectors fetched to use 4 B), not slower DRAM.
+
+## ncu evidence (stride 32, 64Mi elements)
+- Four elementwise_kernel launches of 16Mi elements each (65536 blocks x 128 threads x 2).
+- Per launch: dram__bytes_read 536.9 MB (= 16Mi x 32 B), 32.0 sectors/request,
+  L2 hit rate 0.02%, 674-677 us, DRAM throughput 95.4%, SM throughput ~3%.
+- Sector model confirmed: 8x read amplification, measured. DRAM-bound inside the kernel;
+  the LSU/L1-bound hypothesis is refuted.
+- Misses: dram write 37-41 MB vs 67.1 MB modeled (likely dirty lines left in L2 at kernel end).
+- 4 x 674 us = 2.70 ms vs 3.2-3.3 ms event time: ~0.5 ms outside kernel windows.
+
+## Hypothesis 2 (written before testing)
+PyTorch splits the stride-32 copy into 4 launches (source span > 2^31 bytes), and
+inter-launch gaps cause the ~10% dip in modeled bus GB/s.
+Prediction at --n-elems 16777216 (single launch at every stride): stride-32 median event
+time ~0.68-0.72 ms (ncu kernel time 0.675 ms + small overhead), and modeled bus GB/s at
+stride 32 within ~5% of strides 4-16. If it is clearly longer, the gap is not just splitting.
