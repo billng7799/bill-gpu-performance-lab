@@ -12,3 +12,30 @@
 - N = 64Mi fp32 outputs, cold L2 (512 MiB flush), CUDA-event timing, median of 50.
 - Env: torch 2.11.0+cu128, triton 3.6.0, Windows driver 616.56 (WSL user-mode 615.65.06),
   WSL2 Ubuntu 24.04.5, 82 SMs, sm_120.
+
+## Results (3 runs, median per stride)
+
+| Stride | Eff GB/s | Slowdown | Bus GB/s (modeled) | Predicted slowdown |
+|--------|----------|----------|--------------------|--------------------|
+| 1      | 827.4    | 1.00x    | 827.4              | n/a                |
+| 2      | 528.0    | 1.55x    | 791.9              | ~1.5x              |
+| 4      | 310.9    | 2.65x    | 777.3              | ~2.5x              |
+| 8      | 175.3    | 4.68x    | 788.7              | ~4.5x              |
+| 16     | 174.9    | 4.73x    | 787.1              | ~4.5x              |
+| 32     | 163.4    | 5.03x    | 735.4              | ~4.5x              |
+
+Raw data: benchmarks/results/run{1,2,3}.json and .png.
+
+## Prediction vs measured
+- Contiguous: predicted 80-90% of peak, measured ~92% (820.7 / 827.4 / 827.4 GB/s).
+  The prediction was too conservative.
+- Slowdown tracks the 32B-sector model through stride 8. Strides 8/16 sit a few
+  percent above the 4.5x model in runs 1 and 3; run 2 was faster at strides 4-16.
+- Stride 32: ~5.0x vs 4.5x modeled. Modeled bus throughput drops ~7-10% (734 / 757 /
+  735 GB/s across runs). Reproducible; cause not yet identified (ncu is next).
+
+## Caveats
+- Peak 896 GB/s assumes 28 Gbps GDDR7 on 256-bit; nvidia-smi reports only a 14001 MHz clock.
+- Bus GB/s is a model, not a measurement. ncu dram__bytes_read.sum will test it.
+- SW power cap accrued ~40 ms (run 2) and ~260 ms (run 3); no thermal or power-brake events.
+  Run 1's accrual is unknown. Mid-stride numbers vary ~5-7% between runs.
